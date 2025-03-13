@@ -1,11 +1,17 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import HomeScreen from './presentation/screens/Home.screen';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+
+// Create a client
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <HomeScreen />
+      </QueryClientProvider>
+    </>
   );
 };
 
