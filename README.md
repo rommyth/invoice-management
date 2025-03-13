@@ -4,6 +4,7 @@ This project is a React Native application following Clean Architecture principl
 
 ## Project Structure
 
+```sh
 src/
 │── App.tsx
 │
@@ -31,7 +32,7 @@ src/
 ├── domain/ # Business logic (Use Cases, Entities, etc.)
 │ ├── usecases/ # All application-specific business logic
 │ │ ├── user/
-│ │ │ ├── GetListUserUseCase.ts  
+│ │ │ ├── GetListUserUseCase.ts
 │ │
 │ ├── schema/ # Validation schemas payload like body or params
 │
@@ -43,6 +44,7 @@ src/
 │ │
 │ ├── hooks/ # Custom hooks
 │ │ ├── useHome.ts
+```
 
 ### Explanation
 
