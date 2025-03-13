@@ -10,10 +10,10 @@ src/
 │
 ├── application/ # Global app configurations (optional)
 │ ├── navigations/ # Navigation logic
-│ |
+│ │
 │ ├── redux/ # Global state management
-| |
-| ├── utils/ # Helper functions
+│ │
+│ ├── utils/ # Helper functions
 │ │
 │ ├── assets/ # Static assets (icons, images, etc.)
 │
