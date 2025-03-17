@@ -7,14 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00A8DC25DECE4F70923CF703 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A730630D9B749DCB5A9A9ED /* OpenSans-SemiBold.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-RMInvoiceMan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-RMInvoiceMan.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2BA94DDB794F4103B70EBA64 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01DB32E7B26C4EA8A3589A53 /* OpenSans-Medium.ttf */; };
+		3339669C9A48473E842BA1FF /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B09F3EBFC4C443A991DA31D /* OpenSans-Regular.ttf */; };
+		6619C74D347048F694499015 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08D31A1C38C947E89964A4E4 /* OpenSans-ExtraBold.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		7C1D9D10BBD949978AA9AA8C /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE4496C08E0C42C9ADD68819 /* OpenSans-Light.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		F8CA64C9C81A0C29073293B8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		FB2D79BC9FCD4210ABF052DE /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8FA73AF7A24897977E787E /* OpenSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01DB32E7B26C4EA8A3589A53 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Medium.ttf"; path = "../src/presentation/assets/fonts/OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		08D31A1C38C947E89964A4E4 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../src/presentation/assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		0A730630D9B749DCB5A9A9ED /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../src/presentation/assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		0E8FA73AF7A24897977E787E /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../src/presentation/assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RMInvoiceMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RMInvoiceMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RMInvoiceMan/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RMInvoiceMan/Info.plist; sourceTree = "<group>"; };
@@ -23,7 +33,9 @@
 		5709B34CF0A7D63546082F79 /* Pods-RMInvoiceMan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RMInvoiceMan.release.xcconfig"; path = "Target Support Files/Pods-RMInvoiceMan/Pods-RMInvoiceMan.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-RMInvoiceMan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RMInvoiceMan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RMInvoiceMan/AppDelegate.swift; sourceTree = "<group>"; };
+		7B09F3EBFC4C443A991DA31D /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../src/presentation/assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RMInvoiceMan/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DE4496C08E0C42C9ADD68819 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../src/presentation/assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -51,6 +63,20 @@
 			name = RMInvoiceMan;
 			sourceTree = "<group>";
 		};
+		277B6EFB77E446FC9FB0F518 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E8FA73AF7A24897977E787E /* OpenSans-Bold.ttf */,
+				08D31A1C38C947E89964A4E4 /* OpenSans-ExtraBold.ttf */,
+				DE4496C08E0C42C9ADD68819 /* OpenSans-Light.ttf */,
+				01DB32E7B26C4EA8A3589A53 /* OpenSans-Medium.ttf */,
+				7B09F3EBFC4C443A991DA31D /* OpenSans-Regular.ttf */,
+				0A730630D9B749DCB5A9A9ED /* OpenSans-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +101,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				277B6EFB77E446FC9FB0F518 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -161,6 +188,12 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				F8CA64C9C81A0C29073293B8 /* PrivacyInfo.xcprivacy in Resources */,
+				FB2D79BC9FCD4210ABF052DE /* OpenSans-Bold.ttf in Resources */,
+				6619C74D347048F694499015 /* OpenSans-ExtraBold.ttf in Resources */,
+				7C1D9D10BBD949978AA9AA8C /* OpenSans-Light.ttf in Resources */,
+				2BA94DDB794F4103B70EBA64 /* OpenSans-Medium.ttf in Resources */,
+				3339669C9A48473E842BA1FF /* OpenSans-Regular.ttf in Resources */,
+				00A8DC25DECE4F70923CF703 /* OpenSans-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

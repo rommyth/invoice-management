@@ -1,20 +1,21 @@
 import {useQuery} from '@tanstack/react-query';
 import {getListUserUsecase} from '../../domain/usecases/user/getListUserUsecase';
-import {ToastAndroid} from 'react-native';
 
 const useHome = () => {
-  const appName = 'Welcome To My App';
+  // const {data, isLoading} = useQuery({
+  //   queryKey: ['users'],
+  //   queryFn: () => getListUserUsecase(),
+  //   throwOnError(error) {
+  //     ToastAndroid.show(error.message, 2000);
+  //     return false; // or false based on your logic
+  //   },
+  // });
 
-  const {data, isLoading} = useQuery({
-    queryKey: ['users'],
-    queryFn: () => getListUserUsecase(),
-    throwOnError(error) {
-      ToastAndroid.show(error.message, 2000);
-      return false; // or false based on your logic
-    },
-  });
+  const navigateToCreateInvoice = () => {
+    console.log('Navigate to Create Invoice');
+  };
 
-  return {appName, data, isLoading};
+  return {navigateToCreateInvoice};
 };
 
 export default useHome;
