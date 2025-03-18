@@ -21,7 +21,7 @@ const CommonButton = ({
       onPress={onPress}
       disabled={isLoading ?? disabled}
       style={tw`rounded-md py-4 w-full ${
-        isLoading || disabled ? 'bg-gray-500' : 'bg-slate-800'
+        isLoading || disabled ? 'bg-slate-500' : 'bg-slate-800'
       }`}>
       {isLoading ? (
         <ActivityIndicator color={'white'} size={'small'} />

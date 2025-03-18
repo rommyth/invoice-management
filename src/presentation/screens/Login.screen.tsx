@@ -11,31 +11,20 @@ const Login = () => {
 
   return (
     <View style={tw`flex-1 items-start justify-center p-6 bg-white`}>
-      <Text style={tw`font-primary--bold text-4xl text-gray-600 py-1`}>
+      <Text style={tw`font-primary--bold text-4xl text-slate-600 py-1`}>
         Login
       </Text>
-      <Text style={tw`font-primary--semibold text-base text-gray-600`}>
+      <Text style={tw`font-primary--semibold text-base text-slate-600`}>
         Please Sign in to continue
       </Text>
 
       <View style={tw`h-5`} />
 
-      <CommonInput
-        control={control}
-        name="email"
-        rules={{required: 'Email is required'}}
-        errors={errors}
-        label="Email"
-        placeholder="Masukan email"
-      />
+      <CommonInput label="Email" placeholder="Masukan email" />
 
       <View style={tw`h-5`} />
 
       <CommonInput
-        control={control}
-        name="password"
-        rules={{required: 'Password is required'}}
-        errors={errors}
         label="Password"
         placeholder="Masukan Password"
         isSecure={true}

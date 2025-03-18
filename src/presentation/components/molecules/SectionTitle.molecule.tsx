@@ -15,10 +15,10 @@ const SectionTitle = ({
 }: SectionTitleProps) => {
   return (
     <View style={tw`flex-row items-center justify-between p-4`}>
-      <Text style={tw`font-primary--bold text-xl text-gray-800`}>{title}</Text>
+      <Text style={tw`font-primary--bold text-xl text-slate-800`}>{title}</Text>
       <Text
         onPress={onPressSeeMore}
-        style={tw`font-primary--regular text-sm text-gray-500`}>
+        style={tw`font-primary--regular text-sm text-slate-500`}>
         {seeMoreText}
       </Text>
     </View>

@@ -16,8 +16,11 @@ import {
   PlusIcon,
 } from 'react-native-heroicons/outline';
 import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
+import useInvoice from '../hooks/useInvoice';
 
 const Invoice = () => {
+  const {navigateToCreateInvoice} = useInvoice();
+
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
 
@@ -60,7 +63,10 @@ const Invoice = () => {
         })}
       />
 
-      <FloatingButton icon={<PlusIcon style={tw`text-white`} />} />
+      <FloatingButton
+        icon={<PlusIcon style={tw`text-white`} />}
+        onPress={navigateToCreateInvoice}
+      />
       <BottomNavbar />
     </View>
   );
@@ -76,7 +82,7 @@ const InvoiceAll = () => {
     <View style={tw`flex-1 px-4`}>
       <FlatList
         keyExtractor={(item, index) => index.toString()}
-        data={[...Array(0).fill('')]}
+        data={[...Array(5).fill('')]}
         ListFooterComponent={() => <View style={tw`h-24`} />}
         ItemSeparatorComponent={() => <View style={tw`h-3`} />}
         ListEmptyComponent={() => <CommonListEmpty />}
@@ -111,31 +117,19 @@ const InvoiceAll = () => {
 // ### Page Invoce UnPaid
 // ----------------------------------------------------------------------
 const InvoiceUnPaid = () => {
-  return (
-    <View>
-      <Text>Invoice UnPaid</Text>
-    </View>
-  );
+  return <CommonListEmpty />;
 };
 
 // ============================================================================
 // ### Page Invoce Paid
 // ----------------------------------------------------------------------
 const InvoicePaid = () => {
-  return (
-    <View>
-      <Text>Invoice Paid</Text>
-    </View>
-  );
+  return <CommonListEmpty />;
 };
 
 // ============================================================================
 // ### Page Invoce Cancelled
 // ----------------------------------------------------------------------
 const InvoiceCancelled = () => {
-  return (
-    <View>
-      <Text>Invoice Cancelled</Text>
-    </View>
-  );
+  return <CommonListEmpty />;
 };

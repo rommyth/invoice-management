@@ -18,7 +18,7 @@ import FloatingButton from '../components/molecules/FloatingButton.molecule';
 import {PlusIcon} from 'react-native-heroicons/outline';
 
 const Product = () => {
-  const {} = useProduct();
+  const {navigateToCreateProduct} = useProduct();
 
   return (
     <View style={tw`flex-1 bg-white`}>
@@ -77,7 +77,10 @@ const Product = () => {
         />
       </View>
 
-      <FloatingButton icon={<PlusIcon style={tw`text-white`} />} />
+      <FloatingButton
+        icon={<PlusIcon style={tw`text-white`} />}
+        onPress={navigateToCreateProduct}
+      />
       <BottomNavbar />
     </View>
   );

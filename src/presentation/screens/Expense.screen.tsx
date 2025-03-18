@@ -8,7 +8,7 @@ import {DocumentArrowUpIcon, PlusIcon} from 'react-native-heroicons/outline';
 import FloatingButton from '../components/molecules/FloatingButton.molecule';
 
 const Expense = () => {
-  const {} = useExpense();
+  const {navigateToCreateExpense} = useExpense();
   return (
     <View style={tw`flex-1 bg-white`}>
       <View style={tw`p-4`}>
@@ -68,7 +68,10 @@ const Expense = () => {
         />
       </View>
 
-      <FloatingButton icon={<PlusIcon style={tw`text-white`} />} />
+      <FloatingButton
+        icon={<PlusIcon style={tw`text-white`} />}
+        onPress={navigateToCreateExpense}
+      />
       <BottomNavbar />
     </View>
   );

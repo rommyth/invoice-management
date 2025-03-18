@@ -9,7 +9,7 @@ import {UserCircleIcon} from 'react-native-heroicons/solid';
 import FloatingButton from '../components/molecules/FloatingButton.molecule';
 
 const Client = () => {
-  const {} = useClient();
+  const {navigateToCreateClient} = useClient();
 
   return (
     <View style={tw`flex-1 bg-white`}>
@@ -51,7 +51,10 @@ const Client = () => {
         />
       </View>
 
-      <FloatingButton icon={<PlusIcon style={tw`text-white`} />} />
+      <FloatingButton
+        icon={<PlusIcon style={tw`text-white`} />}
+        onPress={navigateToCreateClient}
+      />
       <BottomNavbar />
     </View>
   );

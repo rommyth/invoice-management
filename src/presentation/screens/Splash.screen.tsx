@@ -11,8 +11,8 @@ const Splash = () => {
     <ImageBackground
       source={BgSplash}
       style={tw`flex-1 w-full min-h-full items-center justify-center`}>
-      <View style={tw`border-l-2 border-gray-400 px-4`}>
-        <Text style={tw`font-primary--bold text-base text-gray-400`}>
+      <View style={tw`border-l-2 border-slate-400 px-4`}>
+        <Text style={tw`font-primary--bold text-base text-slate-400`}>
           RM.SYNERGY
         </Text>
         <Text style={tw`font-primary--bold text-2xl text-black`}>

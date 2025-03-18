@@ -1,38 +1,30 @@
-import {View, Text, TextInput, KeyboardTypeOptions} from 'react-native';
+import {View, Text} from 'react-native';
 import React, {ReactNode, useState} from 'react';
 import tw from '../../../application/libs/tailwind/Tailwind.instance';
+import CurrencyInput from 'react-native-currency-input';
 
-interface CommonInputTypes {
+interface CommonCurrencyInputTypes {
   label?: string;
-  placeholder?: string;
+  value?: number | string;
+  disabled?: boolean;
   errorText?: string;
   suffix?: () => ReactNode;
   prefix?: () => ReactNode;
-  disabled?: boolean;
-  isSecure?: boolean;
-  value?: string;
-  onChangeText?: (text: string) => void;
-  keyboardType?: KeyboardTypeOptions | undefined;
-  multiline?: boolean;
+  onChangeText: (text: string | number) => void;
 }
 
-const CommonInput = ({
-  errorText,
+const CommonCurrencyInput = ({
+  value,
   label,
-  placeholder,
+  errorText,
+  disabled = false,
   suffix,
   prefix,
-  disabled = false,
-  isSecure = false,
-  value,
   onChangeText,
-  keyboardType,
-  multiline,
-}: CommonInputTypes) => {
+}: CommonCurrencyInputTypes) => {
   const [isFocus, setIsFocus] = useState<Boolean>(false);
 
   const _renderLabel = () => {
-    if (!label) return null;
     return (
       <Text style={tw`font-primary--regular text-sm text-black`}>{label}</Text>
     );
@@ -46,19 +38,16 @@ const CommonInput = ({
       : 'border-slate-300';
     return (
       <View
-        style={tw`bg-white border ${borderColor} rounded-lg bg-slate-100 w-full flex-row items-center`}>
+        style={tw`bg-white border ${borderColor} rounded-lg bg-slate-100 w-full flex-row items-center h-12`}>
         {prefix?.()}
-        <TextInput
+        <CurrencyInput
           onFocus={() => setIsFocus(true)}
-          secureTextEntry={isSecure}
-          editable={!disabled}
-          value={value}
-          multiline={multiline}
-          onChangeText={onChangeText}
           onBlur={() => setIsFocus(false)}
-          placeholder={placeholder}
-          placeholderTextColor={'#ababab'}
-          keyboardType={keyboardType}
+          editable={!disabled}
+          value={Number(value)}
+          precision={0}
+          minValue={0}
+          onChangeValue={v => onChangeText(v)}
           style={tw`flex-1 px-4 h-full w-full font-primary--regular text-base text-black`}
         />
         {suffix?.()}
@@ -87,4 +76,4 @@ const CommonInput = ({
   );
 };
 
-export default CommonInput;
+export default CommonCurrencyInput;

@@ -25,7 +25,7 @@ const HomeScreen = () => {
     <View
       style={tw`bg-slate-800 rounded-b-3xl p-4 pt-6 flex-row items-center justify-between`}>
       <View>
-        <Text style={tw`font-primary--regular text-xs text-gray-400`}>
+        <Text style={tw`font-primary--regular text-xs text-slate-400`}>
           Senin, 24 Maret 2025
         </Text>
         <Text style={tw`font-primary--semibold text-xl text-white`}>
