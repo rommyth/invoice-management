@@ -14,9 +14,10 @@ import {Bars3Icon} from 'react-native-heroicons/solid';
 import {ShareIcon, Squares2X2Icon} from 'react-native-heroicons/outline';
 import CommonDropdown from '../components/molecules/CommonDropdown.molecule';
 import CommonButton from '../components/molecules/CommonButton.molecule';
+import ViewShot from 'react-native-view-shot';
 
 const ShareProductCatalog = () => {
-  const {columns, setColumns} = useShareProductCatalog();
+  const {ref, columns, setColumns, onShare} = useShareProductCatalog();
 
   const _renderOptionsButton = () => (
     <View style={tw`flex-row items-center border-t border-slate-200`}>
@@ -26,7 +27,9 @@ const ShareProductCatalog = () => {
           columns === 1 ? 'bg-white' : 'bg-slate-200'
         }`}>
         <Bars3Icon style={tw`text-slate-800`} />
-        <Text style={tw`font-inter--regular text-sm text-slate-800`}>List</Text>
+        <Text style={tw`font-primary--regular text-sm text-slate-800`}>
+          List
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setColumns(3)}
@@ -34,7 +37,7 @@ const ShareProductCatalog = () => {
           columns === 3 ? 'bg-white' : 'bg-slate-200'
         }`}>
         <Squares2X2Icon style={tw`text-slate-800`} />
-        <Text style={tw`font-inter--regular text-sm text-slate-800`}>
+        <Text style={tw`font-primary--regular text-sm text-slate-800`}>
           Column
         </Text>
       </TouchableOpacity>
@@ -106,36 +109,41 @@ const ShareProductCatalog = () => {
       {_renderOptionsButton()}
       {_renderClient()}
       <ScrollView>
-        <View style={tw`p-4 gap-4`}>
-          <View>
-            <Text style={tw`font-primary--bol text-xl text-slate-800`}>
-              Katalog Produk
-            </Text>
-            <Text style={tw`font-primary--bol text-xs text-slate-500`}>
-              Daftar katalog untuk PT ABC
-            </Text>
+        <ViewShot
+          ref={ref}
+          options={{fileName: 'KATALOG_', format: 'jpg', quality: 1}}>
+          <View style={tw`p-4 gap-4 bg-white`}>
+            <View>
+              <Text style={tw`font-primary--bold text-xl text-slate-800`}>
+                Katalog Produk
+              </Text>
+              <Text style={tw`font-primary--bold text-xs text-slate-500`}>
+                Daftar katalog untuk PT ABC
+              </Text>
+            </View>
+            <FlatList
+              scrollEnabled={false}
+              key={columns}
+              keyExtractor={(item, index) => index.toString()}
+              data={[...Array(30)].fill('')}
+              numColumns={columns}
+              renderItem={props => {
+                switch (columns) {
+                  case 1:
+                    return _renderAsList(props);
+                  case 3:
+                    return _renderAsColumn(props);
+                }
+              }}
+            />
           </View>
-          <FlatList
-            scrollEnabled={false}
-            key={columns}
-            keyExtractor={(item, index) => index.toString()}
-            data={[...Array(10)].fill('')}
-            numColumns={columns}
-            renderItem={props => {
-              switch (columns) {
-                case 1:
-                  return _renderAsList(props);
-                case 3:
-                  return _renderAsColumn(props);
-              }
-            }}
-          />
-        </View>
+        </ViewShot>
       </ScrollView>
       <View style={tw`p-4`}>
         <CommonButton
           text="Share"
           prefix={<ShareIcon style={tw`text-white`} size={18} />}
+          onPress={onShare}
         />
       </View>
     </View>
