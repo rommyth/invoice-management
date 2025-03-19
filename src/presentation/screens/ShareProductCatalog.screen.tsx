@@ -15,6 +15,8 @@ import {ShareIcon, Squares2X2Icon} from 'react-native-heroicons/outline';
 import CommonDropdown from '../components/molecules/CommonDropdown.molecule';
 import CommonButton from '../components/molecules/CommonButton.molecule';
 import ViewShot from 'react-native-view-shot';
+import moment from 'moment';
+import ImgLogo from '../assets/images/logo-crkj-round.png';
 
 const ShareProductCatalog = () => {
   const {ref, columns, setColumns, onShare} = useShareProductCatalog();
@@ -58,15 +60,9 @@ const ShareProductCatalog = () => {
     const bgColor = index % 2;
     return (
       <View
-        style={tw`flex-row items-center gap-4 px-2 py-1 ${
-          bgColor ? 'bg-slate-100' : 'bg-white'
+        style={tw`flex-row items-center gap-4 p-4 ${
+          bgColor ? 'bg-white' : 'bg-slate-100'
         }`}>
-        <Image
-          source={{uri: 'http://picsum.photos/200'}}
-          resizeMethod="resize"
-          resizeMode="cover"
-          style={tw`w-10 h-10 rounded-md border border-slate-200 `}
-        />
         <Text
           style={tw`flex-1 font-primary--semibold text-sm text-slate-800`}
           numberOfLines={2}>
@@ -114,18 +110,35 @@ const ShareProductCatalog = () => {
           options={{fileName: 'KATALOG_', format: 'jpg', quality: 1}}>
           <View style={tw`p-4 gap-4 bg-white`}>
             <View>
-              <Text style={tw`font-primary--bold text-xl text-slate-800`}>
+              <View style={tw`items-center justify-center`}>
+                <Image
+                  source={ImgLogo}
+                  resizeMethod="resize"
+                  resizeMode="contain"
+                  style={tw`w-12 h-12`}
+                />
+              </View>
+              <Text
+                style={tw`font-primary--bold text-lg text-slate-800 text-center`}>
                 Katalog Produk
               </Text>
-              <Text style={tw`font-primary--bold text-xs text-slate-500`}>
-                Daftar katalog untuk PT ABC
+              <Text
+                style={tw`font-primary--bold text-xs text-slate-500 text-center`}>
+                Pt. Anima Hermina
+              </Text>
+              <Text
+                style={tw`font-primary--regular text-xs text-slate-500 text-center mt-2`}>
+                Daftar harga produk per tanggal{' '}
+                {moment(new Date().toString())
+                  .locale('id')
+                  .format('DD MMMM YYYY')}
               </Text>
             </View>
             <FlatList
               scrollEnabled={false}
               key={columns}
               keyExtractor={(item, index) => index.toString()}
-              data={[...Array(30)].fill('')}
+              data={[...Array(10)].fill('')}
               numColumns={columns}
               renderItem={props => {
                 switch (columns) {

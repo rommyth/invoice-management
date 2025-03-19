@@ -11,6 +11,7 @@ interface CommonCurrencyInputTypes {
   suffix?: () => ReactNode;
   prefix?: () => ReactNode;
   onChangeText: (text: string | number) => void;
+  height?: number;
 }
 
 const CommonCurrencyInput = ({
@@ -21,6 +22,7 @@ const CommonCurrencyInput = ({
   suffix,
   prefix,
   onChangeText,
+  height = 12,
 }: CommonCurrencyInputTypes) => {
   const [isFocus, setIsFocus] = useState<Boolean>(false);
 
@@ -38,7 +40,7 @@ const CommonCurrencyInput = ({
       : 'border-slate-300';
     return (
       <View
-        style={tw`bg-white border ${borderColor} rounded-lg bg-slate-100 w-full flex-row items-center h-12`}>
+        style={tw`bg-white border ${borderColor} rounded-lg bg-slate-100 w-full flex-row items-center h-${height}`}>
         {prefix?.()}
         <CurrencyInput
           onFocus={() => setIsFocus(true)}

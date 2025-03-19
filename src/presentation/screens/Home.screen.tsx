@@ -41,8 +41,8 @@ const HomeScreen = () => {
   const _renderProductSection = () => (
     <View style={tw`pt-6 pb-8 rounded-b-3xl bg-white`}>
       <SectionTitle
-        title="Produk"
-        seeMoreText="Lihat semua"
+        title="Product"
+        seeMoreText="See more"
         onPressSeeMore={() => {}}
       />
       <FlatList

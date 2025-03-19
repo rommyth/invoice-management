@@ -20,19 +20,19 @@ const Login = () => {
 
       <View style={tw`h-5`} />
 
-      <CommonInput label="Email" placeholder="Masukan email" />
+      <CommonInput label="Email" placeholder="Enter your email" />
 
       <View style={tw`h-5`} />
 
       <CommonInput
         label="Password"
-        placeholder="Masukan Password"
+        placeholder="Enter your password"
         isSecure={true}
       />
 
       <View style={tw`h-14`} />
 
-      <CommonButton text="Masuk" onPress={onSubmit} />
+      <CommonButton text="Login" onPress={onSubmit} />
     </View>
   );
 };

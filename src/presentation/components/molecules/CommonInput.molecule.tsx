@@ -14,6 +14,7 @@ interface CommonInputTypes {
   onChangeText?: (text: string) => void;
   keyboardType?: KeyboardTypeOptions | undefined;
   multiline?: boolean;
+  height?: number;
 }
 
 const CommonInput = ({
@@ -28,6 +29,7 @@ const CommonInput = ({
   onChangeText,
   keyboardType,
   multiline,
+  height = 12,
 }: CommonInputTypes) => {
   const [isFocus, setIsFocus] = useState<Boolean>(false);
 
@@ -46,7 +48,7 @@ const CommonInput = ({
       : 'border-slate-300';
     return (
       <View
-        style={tw`bg-white border ${borderColor} rounded-lg bg-slate-100 w-full flex-row items-center`}>
+        style={tw`bg-white border ${borderColor} rounded-lg bg-slate-100 w-full flex-row items-center h-${height}`}>
         {prefix?.()}
         <TextInput
           onFocus={() => setIsFocus(true)}
