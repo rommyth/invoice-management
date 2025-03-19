@@ -10,16 +10,31 @@ import CommonButton from '../components/molecules/CommonButton.molecule';
 import CommonCurrencyInput from '../components/molecules/CommonCurrencyInput.molecule';
 
 const CreateProduct = () => {
-  const controller = useCreateProduct();
+  const {form, setForm, onSubmit} = useCreateProduct();
 
   return (
     <View style={tw`flex-1 bg-white`}>
       <TopNavbar title="Create New Product" />
       <ScrollView>
         <View style={tw`gap-4 p-4`}>
-          <CommonImagePicker />
-          <CommonInput label="Nama" />
-          <CommonInput label="Stok" />
+          <CommonImagePicker
+            uri={form.product_image as string}
+            onSelected={v => setForm(prev => ({...prev, product_image: v.uri}))}
+            onClear={() => setForm(prev => ({...prev, product_image: ''}))}
+          />
+          <CommonInput
+            label="Nama"
+            value={form.product_name}
+            onChangeText={v => setForm(prev => ({...prev, product_name: v}))}
+          />
+          <CommonInput
+            label="Stok"
+            keyboardType="number-pad"
+            value={form.product_stok.toString()}
+            onChangeText={v =>
+              setForm(prev => ({...prev, product_stok: Number(v)}))
+            }
+          />
           {/* <CommonDropdown
             label="Kategori"
             renderItem={() => (
@@ -31,14 +46,20 @@ const CreateProduct = () => {
               </TouchableOpacity>
             )}
           /> */}
-          <CommonInput label="Nomor Serial" />
+          <CommonInput
+            label="Nomor Serial"
+            value={form.product_serial as string}
+            onChangeText={v => setForm(prev => ({...prev, product_serial: v}))}
+          />
           <CommonCurrencyInput
             label="Harga"
-            value={controller.price}
-            onChangeText={v => controller.setPrice(Number(v))}
+            value={form.product_price}
+            onChangeText={v =>
+              setForm(prev => ({...prev, product_price: Number(v)}))
+            }
           />
           <View style={tw`mt-5`} />
-          <CommonButton text="Submit" onPress={controller.onSubmit} />
+          <CommonButton text="Submit" onPress={onSubmit} />
         </View>
       </ScrollView>
     </View>

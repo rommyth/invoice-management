@@ -13,9 +13,9 @@ export type RootStackParamList = {
   CreateExpense: undefined;
   CreateInvoice: undefined;
   ReportSales: undefined;
-  DetailClient: undefined;
-  DetailProduct: undefined;
-  UpdateBulkProduct: undefined;
+  DetailClient: {item: any};
+  DetailProduct: {item: any};
+  UpdateBulkProduct: {item: any};
   ShareProductCatalog: undefined;
 };
 

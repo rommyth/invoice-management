@@ -17,9 +17,24 @@ import CommonButton from '../components/molecules/CommonButton.molecule';
 import ViewShot from 'react-native-view-shot';
 import moment from 'moment';
 import ImgLogo from '../assets/images/logo-crkj-round.png';
+import {
+  StorageClientTypes,
+  StorageProductTypes,
+} from '../../application/libs/local-storage/storage';
+import {toCurrency} from '../../application/utils/FormatPrice';
+import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
 
 const ShareProductCatalog = () => {
-  const {ref, columns, setColumns, onShare} = useShareProductCatalog();
+  const {
+    ref,
+    columns,
+    clients,
+    products,
+    selectedClient,
+    setSelectedClient,
+    setColumns,
+    onShare,
+  } = useShareProductCatalog();
 
   const _renderOptionsButton = () => (
     <View style={tw`flex-row items-center border-t border-slate-200`}>
@@ -50,13 +65,26 @@ const ShareProductCatalog = () => {
     return (
       <CommonDropdown
         placeholder="Pilih Client"
-        data={[1, 2, 3]}
-        renderItem={() => <Text>123</Text>}
+        value={selectedClient?.client_company_name}
+        data={clients}
+        renderItem={({item}) => {
+          const data = item as StorageClientTypes;
+          return (
+            <TouchableOpacity
+              style={tw`p-2`}
+              onPress={() => setSelectedClient(data)}>
+              <Text
+                style={tw`font-primary--regular text-sm text-slate-800 text-center`}>
+                {data.client_company_name}
+              </Text>
+            </TouchableOpacity>
+          );
+        }}
       />
     );
   };
 
-  const _renderAsList = ({_, index}: any) => {
+  const _renderAsList = (item: StorageProductTypes, index: number) => {
     const bgColor = index % 2;
     return (
       <View
@@ -66,21 +94,21 @@ const ShareProductCatalog = () => {
         <Text
           style={tw`flex-1 font-primary--semibold text-sm text-slate-800`}
           numberOfLines={2}>
-          Nama Produk
+          {item.product_name}
         </Text>
         <Text style={tw`font-primary--semibold text-sm text-slate-800`}>
-          Rp 1.000.000
+          {toCurrency(item.product_price + (selectedClient?.client_fee ?? 0))}
         </Text>
       </View>
     );
   };
 
-  const _renderAsColumn = ({_, index}: any) => {
+  const _renderAsColumn = (item: StorageProductTypes, index: number) => {
     return (
       <View
         style={tw`flex-1 flex-col items-start gap-1 bg-slate-100 border border-slate-200 m-1 rounded-lg overflow-hidden`}>
         <Image
-          source={{uri: 'http://picsum.photos/200'}}
+          source={{uri: item.product_image ?? ''}}
           resizeMethod="resize"
           resizeMode="cover"
           style={tw`w-full h-20 `}
@@ -89,10 +117,10 @@ const ShareProductCatalog = () => {
           <Text
             style={tw`font-primary--regular text-xs/3 text-slate-800`}
             numberOfLines={2}>
-            Nama Produk qw eqwe
+            {item.product_name}
           </Text>
           <Text style={tw`font-primary--semibold text-xs text-slate-900`}>
-            Rp 1.000.000
+            {toCurrency(item.product_price)}
           </Text>
         </View>
       </View>
@@ -124,7 +152,7 @@ const ShareProductCatalog = () => {
               </Text>
               <Text
                 style={tw`font-primary--bold text-xs text-slate-500 text-center`}>
-                Pt. Anima Hermina
+                {selectedClient?.client_company_name || '-'}
               </Text>
               <Text
                 style={tw`font-primary--regular text-xs text-slate-500 text-center mt-2`}>
@@ -138,14 +166,15 @@ const ShareProductCatalog = () => {
               scrollEnabled={false}
               key={columns}
               keyExtractor={(item, index) => index.toString()}
-              data={[...Array(10)].fill('')}
+              data={products?.filter(data => data?.product_price != 0)}
+              ListEmptyComponent={() => <CommonListEmpty />}
               numColumns={columns}
-              renderItem={props => {
+              renderItem={({item, index}) => {
                 switch (columns) {
                   case 1:
-                    return _renderAsList(props);
+                    return _renderAsList(item, index);
                   case 3:
-                    return _renderAsColumn(props);
+                    return _renderAsColumn(item, index);
                 }
               }}
             />

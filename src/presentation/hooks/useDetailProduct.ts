@@ -1,13 +1,23 @@
-import {useNavigation} from '@react-navigation/native';
-import {CreateProductScreenProps} from '../../application/navigations/RootStackTypes';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {DetailProductScreenProps} from '../../application/navigations/RootStackTypes';
 import {useEffect, useState} from 'react';
-import {BackHandler} from 'react-native';
+import {BackHandler, ToastAndroid} from 'react-native';
+import {
+  storageDeleteProduct,
+  StorageProductTypes,
+  storageSetProduct,
+  storageUpdateProduct,
+} from '../../application/libs/local-storage/storage';
 
 const useDetailProduct = () => {
-  const navigation: CreateProductScreenProps['navigation'] = useNavigation();
+  const navigation: DetailProductScreenProps['navigation'] = useNavigation();
+  const route: DetailProductScreenProps['route'] = useRoute();
+
+  const [product, setProduct] = useState<StorageProductTypes>(
+    route.params?.item,
+  );
 
   const [isEditMode, setIsEditMode] = useState(false);
-  const [price, setPrice] = useState<number>(0);
 
   useEffect(() => {
     if (isEditMode) {
@@ -27,11 +37,25 @@ const useDetailProduct = () => {
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
 
-  const onSubmit = () => {
+  const onDelete = () => {
+    storageDeleteProduct(product.product_id);
     navigation.goBack();
   };
 
-  return {price, setPrice, isEditMode, toggleEditMode, onSubmit};
+  const onSubmitUpdate = () => {
+    storageUpdateProduct(product);
+    navigation.goBack();
+    ToastAndroid.show('Product Updated', 2000);
+  };
+
+  return {
+    product,
+    setProduct,
+    isEditMode,
+    toggleEditMode,
+    onDelete,
+    onSubmitUpdate,
+  };
 };
 
 export default useDetailProduct;

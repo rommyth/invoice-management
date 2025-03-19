@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
   ImageBackground,
+  useWindowDimensions,
 } from 'react-native';
 import React from 'react';
 import useHome from '../hooks/useHome';
@@ -12,14 +13,12 @@ import tw from '../../application/libs/tailwind/Tailwind.instance';
 import {PlusIcon, UserCircleIcon} from 'react-native-heroicons/solid';
 import BottomNavbar from '../components/organisms/BottomNavbar.oragnism';
 import SectionTitle from '../components/molecules/SectionTitle.molecule';
-import {
-  ChevronRightIcon,
-  DocumentArrowUpIcon,
-  NewspaperIcon,
-} from 'react-native-heroicons/outline';
+import {NewspaperIcon} from 'react-native-heroicons/outline';
+import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
 
 const HomeScreen = () => {
-  const {} = useHome();
+  const layout = useWindowDimensions();
+  const {products} = useHome();
 
   const _renderHeader = () => (
     <View
@@ -48,7 +47,12 @@ const HomeScreen = () => {
       <FlatList
         horizontal
         keyExtractor={(item, index) => index.toString()}
-        data={[...Array(5).fill('')]}
+        data={products?.slice(0, 4)}
+        ListEmptyComponent={() => (
+          <View style={tw`w-[${layout.width - 32}px]`}>
+            <CommonListEmpty />
+          </View>
+        )}
         ListHeaderComponent={() => <View style={tw`w-4`} />}
         ListFooterComponent={() => <View style={tw`w-4`} />}
         ItemSeparatorComponent={() => <View style={tw`w-2`} />}
@@ -61,8 +65,10 @@ const HomeScreen = () => {
                 resizeMode="cover"
                 style={tw`w-32 h-50`}>
                 <View style={tw`bg-black/30 rounded-md p-2`}>
-                  <Text style={tw`font-primary--semibold text-xs text-white`}>
-                    Nasi Padang
+                  <Text
+                    style={tw`font-primary--semibold text-xs text-white`}
+                    numberOfLines={1}>
+                    {item.product_name}
                   </Text>
                 </View>
               </ImageBackground>

@@ -1,7 +1,13 @@
 import {useQuery} from '@tanstack/react-query';
 import {getListUserUsecase} from '../../domain/usecases/user/getListUserUsecase';
+import {useMMKVObject} from 'react-native-mmkv';
+import {
+  KEY_TYPE,
+  StorageProductTypes,
+} from '../../application/libs/local-storage/storage';
 
 const useHome = () => {
+  const [products] = useMMKVObject<StorageProductTypes[]>(KEY_TYPE.PRODUCTS);
   // const {data, isLoading} = useQuery({
   //   queryKey: ['users'],
   //   queryFn: () => getListUserUsecase(),
@@ -15,7 +21,7 @@ const useHome = () => {
     console.log('Navigate to Create Invoice');
   };
 
-  return {navigateToCreateInvoice};
+  return {products, navigateToCreateInvoice};
 };
 
 export default useHome;

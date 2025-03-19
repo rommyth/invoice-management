@@ -14,7 +14,6 @@ import BottomNavbar from '../components/organisms/BottomNavbar.oragnism';
 import SearchInput from '../components/molecules/SearchInput.molecule';
 import FloatingButton from '../components/molecules/FloatingButton.molecule';
 import {
-  ArrowDownTrayIcon,
   ChevronLeftIcon,
   EllipsisVerticalIcon,
   PencilSquareIcon,
@@ -29,13 +28,18 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import ModalConfirmationDelete from '../components/organisms/ModalConfirmationDelete.organism';
+import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
+import {StorageProductTypes} from '../../application/libs/local-storage/storage';
+import {toCurrency} from '../../application/utils/FormatPrice';
 
 const Product = () => {
   const {
+    products,
     checkedItem,
     isCheckMode,
     showModalDelete,
     onChecked,
+    onDeleteSelectedItems,
     toggleIsCheckMode,
     toggleShowModalDelete,
     navigateToCreateProduct,
@@ -121,8 +125,8 @@ const Product = () => {
     </View>
   );
 
-  const _renderItem = ({item}: any) => {
-    const isChecked = checkedItem.find(val => val == item);
+  const _renderItem = (item: StorageProductTypes) => {
+    const isChecked = checkedItem.find(val => val === item);
     return (
       <TouchableOpacity
         onPress={() =>
@@ -141,25 +145,25 @@ const Product = () => {
             isChecked ? 'bg-green-100' : 'bg-white'
           }`}>
           <Image
-            source={{uri: 'http://picsum.photos/200'}}
+            source={{uri: item.product_image ?? ''}}
             resizeMethod="resize"
             resizeMode="cover"
             style={tw`w-18 h-18 border border-slate-200 rounded-md`}
           />
           <View style={tw`flex-1`}>
             <Text style={tw`font-primary--semibold text-sm text-slate-800`}>
-              Nama Item
+              {item.product_name || '-'}
             </Text>
             <Text style={tw`font-primary--regular text-xs text-slate-500`}>
-              Kategori
+              Serial : {item.product_serial || '-'}
             </Text>
             <Text style={tw`font-primary--bold text-xl text-slate-800 mt-2`}>
-              Rp 99.999.999
+              {toCurrency(item.product_price)}
             </Text>
           </View>
           <View style={tw`bg-slate-200 px-1.5 py-0.5 rounded-sm`}>
             <Text style={tw`font-primary--semibold text-[10px] text-slate-800`}>
-              Stok : 1
+              Stok : {item.product_stok}
             </Text>
           </View>
         </View>
@@ -178,12 +182,13 @@ const Product = () => {
       <View style={tw`flex-1 mt-4`}>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          data={[1, 2, 3, 4, 5, 6]}
+          data={products}
+          ListEmptyComponent={() => <CommonListEmpty />}
           ItemSeparatorComponent={() => (
             <View style={tw`w-full h-[1px] bg-slate-300`} />
           )}
           ListFooterComponent={() => <View style={tw`h-24`} />}
-          renderItem={_renderItem}
+          renderItem={({item}) => _renderItem(item)}
         />
       </View>
 
@@ -191,14 +196,16 @@ const Product = () => {
         visible={showModalDelete}
         text="Are you sure you want to delete selected items ?"
         subtext="The item will be lost forever and cannot be restored."
-        onDelete={() => {}}
+        onDelete={onDeleteSelectedItems}
         onClose={toggleShowModalDelete}
       />
 
-      <FloatingButton
-        icon={<PlusIcon style={tw`text-white`} />}
-        onPress={navigateToCreateProduct}
-      />
+      {!isCheckMode && (
+        <FloatingButton
+          icon={<PlusIcon style={tw`text-white`} />}
+          onPress={navigateToCreateProduct}
+        />
+      )}
       <BottomNavbar />
     </View>
   );

@@ -4,22 +4,38 @@ import tw from '../../application/libs/tailwind/Tailwind.instance';
 import TopNavbar from '../components/organisms/TopNavbar.organism';
 import CommonInput from '../components/molecules/CommonInput.molecule';
 import CommonButton from '../components/molecules/CommonButton.molecule';
+import useUpdateBulkProduct from '../hooks/useUpdateBulkProduct';
+import {StorageProductTypes} from '../../application/libs/local-storage/storage';
+import CommonCurrencyInput from '../components/molecules/CommonCurrencyInput.molecule';
 
 const UpdateBulkProduct = () => {
-  const _renderAsList = ({_, index}: any) => {
+  const {products, onChangePrice, onSubmitUpdate} = useUpdateBulkProduct();
+
+  const _renderAsList = (item: StorageProductTypes, index: number) => {
     const bgColor = index % 2;
     return (
       <View
         style={tw`flex-row items-center gap-4 p-4 ${
           bgColor ? 'bg-slate-100' : 'bg-white'
         }`}>
-        <Text
-          style={tw`flex-2 font-primary--semibold text-sm text-slate-800`}
-          numberOfLines={2}>
-          Nama Produk
-        </Text>
         <View style={tw`flex-1`}>
-          <CommonInput placeholder="Harga" />
+          <Text
+            style={tw`font-primary--semibold text-sm text-slate-800`}
+            numberOfLines={2}>
+            {item.product_name}
+          </Text>
+          <Text
+            style={tw` font-primary--regular text-xs text-slate-500`}
+            numberOfLines={2}>
+            Serial: {item.product_serial ?? '-'}
+          </Text>
+        </View>
+        <View style={tw`flex-1`}>
+          <CommonCurrencyInput
+            prefix={() => <Text style={tw`ml-4`}>Rp</Text>}
+            value={item.product_price}
+            onChangeText={v => onChangePrice(item.product_id, v as string)}
+          />
         </View>
       </View>
     );
@@ -30,11 +46,11 @@ const UpdateBulkProduct = () => {
       <TopNavbar title="Update Products" />
       <FlatList
         keyExtractor={(item, index) => index.toString()}
-        data={[...Array(10)].fill('')}
-        renderItem={_renderAsList}
+        data={products}
+        renderItem={({item, index}) => _renderAsList(item, index)}
       />
       <View style={tw`p-4`}>
-        <CommonButton text="Save All" />
+        <CommonButton text="Save All" onPress={onSubmitUpdate} />
       </View>
     </View>
   );

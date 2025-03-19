@@ -11,10 +11,17 @@ import CommonCurrencyInput from '../components/molecules/CommonCurrencyInput.mol
 import useDetailProduct from '../hooks/useDetailProduct';
 
 const DetailProduct = () => {
-  const controller = useDetailProduct();
+  const {
+    product,
+    setProduct,
+    isEditMode,
+    toggleEditMode,
+    onSubmitUpdate,
+    onDelete,
+  } = useDetailProduct();
 
   const _renderBottomButton = () => {
-    if (controller.isEditMode) {
+    if (isEditMode) {
       return (
         <View style={tw`flex-row items-center gap-2`}>
           <View style={tw`flex-1`}>
@@ -22,11 +29,11 @@ const DetailProduct = () => {
               text="Batal"
               bgColor="bg-slate-200"
               textColor="text-slate-500"
-              onPress={controller.toggleEditMode}
+              onPress={toggleEditMode}
             />
           </View>
           <View style={tw`flex-1`}>
-            <CommonButton text="Save" />
+            <CommonButton text="Save" onPress={onSubmitUpdate} />
           </View>
         </View>
       );
@@ -34,10 +41,14 @@ const DetailProduct = () => {
       return (
         <View style={tw`flex-row items-center gap-2`}>
           <View style={tw`flex-1`}>
-            <CommonButton text="Delete" bgColor="bg-red-500" />
+            <CommonButton
+              text="Delete"
+              bgColor="bg-red-500"
+              onPress={onDelete}
+            />
           </View>
           <View style={tw`flex-3`}>
-            <CommonButton text="Update" onPress={controller.toggleEditMode} />
+            <CommonButton text="Update" onPress={toggleEditMode} />
           </View>
         </View>
       );
@@ -46,14 +57,31 @@ const DetailProduct = () => {
 
   return (
     <View style={tw`flex-1 bg-white`}>
-      <TopNavbar
-        title={controller.isEditMode ? 'Update Product' : 'Detail Product'}
-      />
+      <TopNavbar title={isEditMode ? 'Update Product' : 'Detail Product'} />
       <ScrollView>
         <View style={tw`gap-4 p-4`}>
-          <CommonImagePicker disabled={!controller.isEditMode} />
-          <CommonInput disabled={!controller.isEditMode} label="Nama" />
-          <CommonInput disabled={!controller.isEditMode} label="Stok" />
+          <CommonImagePicker
+            disabled={!isEditMode}
+            uri={product.product_image ?? ''}
+            onSelected={v =>
+              setProduct(prev => ({...prev, product_image: v.uri}))
+            }
+          />
+          <CommonInput
+            disabled={!isEditMode}
+            label="Nama"
+            value={product.product_name}
+            onChangeText={v => setProduct(prev => ({...prev, product_name: v}))}
+          />
+          <CommonInput
+            disabled={!isEditMode}
+            label="Stok"
+            keyboardType="number-pad"
+            value={product.product_stok.toString()}
+            onChangeText={v =>
+              setProduct(prev => ({...prev, product_stok: Number(v)}))
+            }
+          />
           {/* <CommonDropdown
             label="Kategori"
             renderItem={() => (
@@ -65,12 +93,21 @@ const DetailProduct = () => {
               </TouchableOpacity>
             )}
           /> */}
-          <CommonInput disabled={!controller.isEditMode} label="Nomor Serial" />
+          <CommonInput
+            disabled={!isEditMode}
+            label="Nomor Serial"
+            value={product.product_serial ?? ''}
+            onChangeText={v =>
+              setProduct(prev => ({...prev, product_serial: v}))
+            }
+          />
           <CommonCurrencyInput
-            disabled={!controller.isEditMode}
+            disabled={!isEditMode}
             label="Harga"
-            value={controller.price}
-            onChangeText={v => controller.setPrice(Number(v))}
+            value={product.product_price}
+            onChangeText={v =>
+              setProduct(prev => ({...prev, product_price: Number(v)}))
+            }
           />
           <View style={tw`mt-5`} />
           {_renderBottomButton()}

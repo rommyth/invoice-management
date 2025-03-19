@@ -27,6 +27,7 @@ const CommonCurrencyInput = ({
   const [isFocus, setIsFocus] = useState<Boolean>(false);
 
   const _renderLabel = () => {
+    if (!label) return <></>;
     return (
       <Text style={tw`font-primary--regular text-sm text-black`}>{label}</Text>
     );

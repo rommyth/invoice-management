@@ -71,7 +71,7 @@ const CommonDropdown = ({
         onRequestClose={() => toggleModal()}
         backdropColor="#00000010">
         <View style={tw`flex-1 items-center justify-center`}>
-          <View style={tw`bg-white w-4/5 p-4 max-h-[50%] rounded-md`}>
+          <View style={tw`bg-white w-4/5 p-4 max-h-[50%] rounded-md gap-6`}>
             <FlatList
               data={data}
               nestedScrollEnabled

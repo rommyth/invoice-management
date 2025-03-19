@@ -15,8 +15,14 @@ type CommonImpagePickerProps = {
   label?: string;
   errorText?: String;
   disabled?: boolean;
-  onSelected?: (value: any) => void;
+  onSelected?: (value: PickerImageResponseType) => void;
   onClear?: () => void;
+};
+
+type PickerImageResponseType = {
+  name: string | undefined;
+  type: string | undefined;
+  uri: string | undefined;
 };
 
 const CommonImagePicker = ({
@@ -47,13 +53,13 @@ const CommonImagePicker = ({
       return;
     } else {
       const assets = response.assets![0];
-      const result = {
+      const result: PickerImageResponseType = {
         name: assets.fileName,
         type: assets.type,
         uri: assets.uri,
       };
 
-      onSelected(result);
+      onSelected?.(result);
     }
   };
 
