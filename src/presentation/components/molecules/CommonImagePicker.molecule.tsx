@@ -14,6 +14,7 @@ type CommonImpagePickerProps = {
   uri?: string;
   label?: string;
   errorText?: String;
+  disabled?: boolean;
   onSelected?: (value: any) => void;
   onClear?: () => void;
 };
@@ -21,6 +22,7 @@ type CommonImpagePickerProps = {
 const CommonImagePicker = ({
   uri,
   label,
+  disabled = false,
   errorText,
   onSelected,
   onClear,
@@ -65,7 +67,9 @@ const CommonImagePicker = ({
     return (
       <View>
         <TouchableOpacity
-          onPress={() => setShowModal(true)}
+          onPress={() =>
+            disabled ? setShowFullImage(true) : setShowModal(true)
+          }
           style={tw`rounded-xl border border-slate-300`}>
           {uri ? (
             <Image

@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {CreateProductScreenProps} from '../../application/navigations/RootStackTypes';
+import {useState} from 'react';
 
 type FormSchema = {
   image: any;
@@ -13,13 +14,13 @@ type FormSchema = {
 
 const useCreateProduct = () => {
   const navigation: CreateProductScreenProps['navigation'] = useNavigation();
-  const form = useForm<FormSchema>();
+  const [price, setPrice] = useState<number>(0);
 
   const onSubmit = () => {
     navigation.goBack();
   };
 
-  return {onSubmit};
+  return {price, setPrice, onSubmit};
 };
 
 export default useCreateProduct;

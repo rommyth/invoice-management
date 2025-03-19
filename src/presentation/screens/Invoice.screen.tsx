@@ -14,12 +14,14 @@ import {
   FolderMinusIcon,
   NewspaperIcon,
   PlusIcon,
+  PresentationChartLineIcon,
 } from 'react-native-heroicons/outline';
 import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
 import useInvoice from '../hooks/useInvoice';
+import {PresentationChartBarIcon} from 'react-native-heroicons/solid';
 
 const Invoice = () => {
-  const {navigateToCreateInvoice} = useInvoice();
+  const {navigateToCreateInvoice, navigateToReportSales} = useInvoice();
 
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
@@ -42,13 +44,21 @@ const Invoice = () => {
     />
   );
 
+  const _renderHeader = () => (
+    <View
+      style={tw`bg-slate-800 rounded-b-3xl p-4 flex-row items-center justify-between`}>
+      <Text style={tw`font-primary--semibold text-xl text-white`}>Invoice</Text>
+      <PresentationChartLineIcon
+        style={tw`text-white`}
+        onPress={navigateToReportSales}
+      />
+    </View>
+  );
+
   return (
     <View style={tw`flex-1 bg-white`}>
-      <View style={tw`p-4`}>
-        <Text style={tw`font-primary--semibold text-2xl text-slate-800`}>
-          Invoice
-        </Text>
-      </View>
+      {_renderHeader()}
+
       <TabView
         lazy
         renderTabBar={_renderTabBar}

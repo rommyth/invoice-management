@@ -8,7 +8,11 @@ const useInvoice = () => {
     navigation.navigate('CreateInvoice');
   };
 
-  return {navigateToCreateInvoice};
+  const navigateToReportSales = () => {
+    navigation.navigate('ReportSales');
+  };
+
+  return {navigateToCreateInvoice, navigateToReportSales};
 };
 
 export default useInvoice;

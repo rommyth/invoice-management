@@ -8,7 +8,11 @@ const useClient = () => {
     navigation.navigate('CreateClient');
   };
 
-  return {navigateToCreateClient};
+  const navigateToDetailClient = () => {
+    navigation.navigate('DetailClient');
+  };
+
+  return {navigateToDetailClient, navigateToCreateClient};
 };
 
 export default useClient;

@@ -12,6 +12,9 @@ export type RootStackParamList = {
   CreateClient: undefined;
   CreateExpense: undefined;
   CreateInvoice: undefined;
+  ReportSales: undefined;
+  DetailClient: undefined;
+  DetailProduct: undefined;
 };
 
 export type SplashScreenProps = NativeStackScreenProps<RootStackParamList, 'Splash'>;
@@ -25,3 +28,6 @@ export type CreateProductScreenProps = NativeStackScreenProps<RootStackParamList
 export type CreateClientScreenProps = NativeStackScreenProps<RootStackParamList, 'CreateClient'>;
 export type CreateExpenseScreenProps = NativeStackScreenProps<RootStackParamList, 'CreateExpense'>;
 export type CreateInvoiceScreenProps = NativeStackScreenProps<RootStackParamList, 'CreateInvoice'>;
+export type ReportSalesScreenProps = NativeStackScreenProps<RootStackParamList, 'ReportSales'>;
+export type DetailClientScreenProps = NativeStackScreenProps<RootStackParamList, 'DetailClient'>;
+export type DetailProductScreenProps = NativeStackScreenProps<RootStackParamList, 'DetailProduct'>;

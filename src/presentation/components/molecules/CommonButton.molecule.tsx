@@ -7,6 +7,8 @@ type CommonButtonProps = {
   onPress?: () => void;
   isLoading?: boolean;
   disabled?: boolean;
+  bgColor?: string;
+  textColor?: string;
 };
 
 const CommonButton = ({
@@ -14,6 +16,8 @@ const CommonButton = ({
   onPress,
   isLoading,
   disabled = false,
+  bgColor = 'bg-slate-800',
+  textColor = 'text-white',
 }: CommonButtonProps) => {
   return (
     <TouchableOpacity
@@ -21,12 +25,13 @@ const CommonButton = ({
       onPress={onPress}
       disabled={isLoading ?? disabled}
       style={tw`rounded-md py-4 w-full ${
-        isLoading || disabled ? 'bg-slate-500' : 'bg-slate-800'
+        isLoading || disabled ? 'bg-slate-500' : bgColor
       }`}>
       {isLoading ? (
         <ActivityIndicator color={'white'} size={'small'} />
       ) : (
-        <Text style={tw`font-primary--semibold text-sm text-white text-center`}>
+        <Text
+          style={tw`font-primary--semibold text-sm ${textColor} text-center`}>
           {text}
         </Text>
       )}

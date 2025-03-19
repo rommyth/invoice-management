@@ -1,9 +1,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RootStackParamList} from './RootStackTypes';
 import Home from '../../presentation/screens/Home.screen';
 import Splash from '../../presentation/screens/Splash.screen';
 import Login from '../../presentation/screens/Login.screen';
-import {RootStackParamList} from './RootStackTypes';
 import Product from '../../presentation/screens/Product.screen';
 import Client from '../../presentation/screens/Client.screen';
 import Expense from '../../presentation/screens/Expense.screen';
@@ -12,6 +12,9 @@ import CreateProduct from '../../presentation/screens/CreateProduct.screen';
 import CreateClient from '../../presentation/screens/CreateClient.screen';
 import CreateExpense from '../../presentation/screens/CreateExpense.screen';
 import CreateInvoice from '../../presentation/screens/CreateInvoice.screen';
+import ReportSales from '../../presentation/screens/ReportSales.screen';
+import DetailClient from '../../presentation/screens/DetailClient.screen';
+import DetailProduct from '../../presentation/screens/DetailProduct';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -31,6 +34,9 @@ const RootStack = () => {
       <Stack.Screen name="CreateClient" component={CreateClient} />
       <Stack.Screen name="CreateExpense" component={CreateExpense} />
       <Stack.Screen name="CreateInvoice" component={CreateInvoice} />
+      <Stack.Screen name="ReportSales" component={ReportSales} />
+      <Stack.Screen name="DetailClient" component={DetailClient} />
+      <Stack.Screen name="DetailProduct" component={DetailProduct} />
     </Stack.Navigator>
   );
 };

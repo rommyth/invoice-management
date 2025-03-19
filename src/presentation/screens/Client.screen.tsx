@@ -9,17 +9,20 @@ import {UserCircleIcon} from 'react-native-heroicons/solid';
 import FloatingButton from '../components/molecules/FloatingButton.molecule';
 
 const Client = () => {
-  const {navigateToCreateClient} = useClient();
+  const {navigateToCreateClient, navigateToDetailClient} = useClient();
+
+  const _renderHeader = () => (
+    <View
+      style={tw`bg-slate-800 rounded-b-3xl p-4 flex-row items-center justify-between`}>
+      <Text style={tw`font-primary--semibold text-xl text-white`}>Client</Text>
+    </View>
+  );
 
   return (
     <View style={tw`flex-1 bg-white`}>
-      <View style={tw`p-4`}>
-        <Text style={tw`font-primary--semibold text-2xl text-slate-800`}>
-          Client
-        </Text>
-      </View>
+      {_renderHeader()}
 
-      <View style={tw`px-4`}>
+      <View style={tw`px-4 mt-2`}>
         <SearchInput />
       </View>
 
@@ -29,7 +32,7 @@ const Client = () => {
           data={[...Array(5)].fill('')}
           renderItem={() => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigateToDetailClient()}>
                 <View style={tw`flex-row items-center gap-4 px-4 py-3`}>
                   <UserCircleIcon style={tw`text-slate-500`} size={40} />
                   <View>

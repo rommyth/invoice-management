@@ -9,12 +9,19 @@ import FloatingButton from '../components/molecules/FloatingButton.molecule';
 
 const Expense = () => {
   const {navigateToCreateExpense} = useExpense();
+
+  const _renderHeader = () => (
+    <View
+      style={tw`bg-slate-800 rounded-b-3xl p-4 flex-row items-center justify-between`}>
+      <Text style={tw`font-primary--semibold text-xl text-white`}>Expense</Text>
+    </View>
+  );
+
   return (
     <View style={tw`flex-1 bg-white`}>
-      <View style={tw`p-4`}>
-        <Text style={tw`font-primary--semibold text-2xl text-slate-800`}>
-          Expense
-        </Text>
+      {_renderHeader()}
+
+      <View style={tw`px-4`}>
         <View style={tw`flex-row items-center items-center gap-2`}>
           <View style={tw`flex-1 w-full mt-2 bg-slate-800 rounded-lg p-3`}>
             <Text style={tw`font-primary--regular text-[10px] text-white`}>
@@ -35,7 +42,7 @@ const Expense = () => {
         </View>
       </View>
 
-      <View style={tw`px-4`}>
+      <View style={tw`px-4 mt-2`}>
         <SearchInput />
       </View>
 
