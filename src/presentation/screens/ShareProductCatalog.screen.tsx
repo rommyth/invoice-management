@@ -5,13 +5,18 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import tw from '../../application/libs/tailwind/Tailwind.instance';
 import TopNavbar from '../components/organisms/TopNavbar.organism';
 import useShareProductCatalog from '../hooks/useShareProductCatalog';
 import {Bars3Icon} from 'react-native-heroicons/solid';
-import {ShareIcon, Squares2X2Icon} from 'react-native-heroicons/outline';
+import {
+  ChevronRightIcon,
+  ShareIcon,
+  Squares2X2Icon,
+} from 'react-native-heroicons/outline';
 import CommonDropdown from '../components/molecules/CommonDropdown.molecule';
 import CommonButton from '../components/molecules/CommonButton.molecule';
 import ViewShot from 'react-native-view-shot';
@@ -36,6 +41,10 @@ const ShareProductCatalog = () => {
     setSelectedClient,
     setColumns,
     onShare,
+    userWhatsapp,
+    setUserWhatsapp,
+    userTiktok,
+    setUserTiktok,
   } = useShareProductCatalog();
 
   const _renderOptionsButton = () => (
@@ -136,14 +145,14 @@ const ShareProductCatalog = () => {
   return (
     <View style={tw`flex-1 w-full min-h-full bg-white`}>
       <TopNavbar title="Share Product Catalog" />
-      {_renderOptionsButton()}
+      {/* {_renderOptionsButton()} */}
       {_renderClient()}
       <ScrollView>
         <ViewShot
           ref={ref}
           options={{fileName: 'KATALOG_', format: 'jpg', quality: 1}}>
           <View style={tw`p-4 gap-4 bg-white`}>
-            <View>
+            <View style={tw`gap-1`}>
               <View style={tw`items-center justify-center`}>
                 <Image
                   source={ImgLogo}
@@ -153,21 +162,25 @@ const ShareProductCatalog = () => {
                 />
               </View>
               <Text
-                style={tw`font-primary--bold text-lg text-slate-800 text-center`}>
-                Katalog Produk
+                style={tw`font-primary--bold text-base text-slate-800 text-center`}>
+                Info Update Harga
               </Text>
               <Text
-                style={tw`font-primary--bold text-xs text-slate-500 text-center`}>
-                {selectedClient?.client_company_name || '-'}
+                style={tw`font-primary--bold text-base text-slate-800 text-center`}>
+                Minyak Goreng Curah
               </Text>
-              <Text
-                style={tw`font-primary--regular text-xs text-slate-500 text-center mt-2`}>
-                Daftar harga produk per tanggal{' '}
-                <Text style={tw`font-primary--bold text-slate-800`}>
-                  {moment(date).format('DD MMMM YYYY')}
-                </Text>
+              <View style={tw`w-full bg-slate-300 h-[1px] my-2`} />
+              <Text style={tw`font-primary--bold text-xs text-slate-800`}>
+                {moment(date).format('dddd, DD/MM/YYYY')}
+              </Text>
+              <Text style={tw`font-primary--bold text-xs text-slate-800`}>
+                Kepada : {selectedClient?.client_company_name}
+              </Text>
+              <Text style={tw`font-primary--bold text-xs text-slate-800`}>
+                Alamat : {selectedClient?.client_address}
               </Text>
             </View>
+            <View style={tw`w-full bg-slate-300 h-[1px]`} />
             <FlatList
               scrollEnabled={false}
               key={columns}
@@ -184,13 +197,67 @@ const ShareProductCatalog = () => {
                 }
               }}
             />
-            <Text
-              style={tw`mt-8 mb-4 font-primary--regular text-xs text-slate-500 text-center`}>
-              Diterbitkan oleh{'\n'}
-              <Text style={tw`font-primary--bold text-slate-800`}>
-                PT CIPTA RASA KREATIF JAYA
+            <View style={tw`w-full bg-slate-300 h-[1px]`} />
+            <View style={tw`gap-1`}>
+              <View style={tw`flex-row items-center gap-2`}>
+                <ChevronRightIcon style={tw`text-slate-800`} size={15} />
+                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                  Sistem pembayaran COD
+                </Text>
+              </View>
+              <View style={tw`flex-row items-center gap-2`}>
+                <ChevronRightIcon style={tw`text-slate-800`} size={15} />
+                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                  Pemesanan H-1
+                </Text>
+              </View>
+              <View style={tw`flex-row items-center gap-2`}>
+                <ChevronRightIcon style={tw`text-slate-800`} size={15} />
+                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                  Pembayaran sebelum dibuka segel
+                </Text>
+              </View>
+            </View>
+            <View style={tw`w-full bg-slate-300 h-[1px]`} />
+            <View style={tw`gap-1`}>
+              <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                Terima kasih
               </Text>
-            </Text>
+              <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                PT. CIPTA RASA KREATIF JAYA
+              </Text>
+            </View>
+            <View style={tw`gap-0.5 `}>
+              <Text
+                style={tw`font-primary--regular text-xs text-slate-800 mb-0.5`}>
+                Info lebih lanjut
+              </Text>
+              <View style={tw`flex-row items-center`}>
+                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                  Whatsapp :{' '}
+                </Text>
+                <TextInput
+                  value={userWhatsapp}
+                  onChangeText={text => setUserWhatsapp(text)}
+                  keyboardType="number-pad"
+                  placeholder="Masukan nomor wa"
+                  placeholderTextColor={'#aba'}
+                  style={tw`font-primary--regular text-xs text-slate-800 h-4 mt-1 p-0 flex-1`}
+                />
+              </View>
+              <View style={tw`flex-row items-center`}>
+                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                  TikTok :{' '}
+                </Text>
+                <TextInput
+                  value={userTiktok}
+                  onChangeText={text => setUserTiktok(text)}
+                  placeholder="Masukan nama tiktok"
+                  placeholderTextColor={'#aba'}
+                  style={tw`font-primary--regular text-xs text-slate-800 h-4 mt-0.5 p-0 flex-1`}
+                />
+              </View>
+            </View>
           </View>
         </ViewShot>
       </ScrollView>

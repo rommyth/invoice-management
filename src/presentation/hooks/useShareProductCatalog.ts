@@ -1,5 +1,5 @@
 import {useCallback, useRef, useState} from 'react';
-import {useMMKVObject} from 'react-native-mmkv';
+import {useMMKVObject, useMMKVString} from 'react-native-mmkv';
 import Share from 'react-native-share';
 import {
   KEY_TYPE,
@@ -19,6 +19,8 @@ const useShareProductCatalog = () => {
   const [products, setProducts] = useMMKVObject<StorageProductTypes[]>(
     KEY_TYPE.PRODUCTS,
   );
+  const [userWhatsapp, setUserWhatsapp] = useMMKVString(KEY_TYPE.USER_WHATSAPP);
+  const [userTiktok, setUserTiktok] = useMMKVString(KEY_TYPE.USER_TIKTOK);
 
   const [selectedClient, setSelectedClient] =
     useState<StorageClientTypes | null>(route.params?.client ?? null);
@@ -43,6 +45,10 @@ const useShareProductCatalog = () => {
     products,
     selectedClient,
     setSelectedClient,
+    userWhatsapp,
+    setUserWhatsapp,
+    userTiktok,
+    setUserTiktok,
   };
 };
 

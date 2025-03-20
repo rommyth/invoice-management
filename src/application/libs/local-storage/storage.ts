@@ -25,6 +25,8 @@ export type StorageProductTypes = {
 export const KEY_TYPE = {
   PRODUCTS: 'PRODUCTS',
   CLIENTS: 'CLIENTS',
+  USER_WHATSAPP: 'USER_WHATSAPP',
+  USER_TIKTOK: 'USER_TIKTOK',
 };
 
 export const storageSetClient = (value: StorageClientTypes) => {
