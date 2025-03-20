@@ -6,7 +6,7 @@ import BgSplash from '../assets/images/bg-splash.png';
 import ImgLogo from '../assets/images/logo-crkj-round.png';
 
 const Splash = () => {
-  // const _ = useSplash();
+  const _ = useSplash();
 
   return (
     <ImageBackground

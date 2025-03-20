@@ -1,6 +1,13 @@
-import {View, Text, TextInput, KeyboardTypeOptions} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  KeyboardTypeOptions,
+  TouchableOpacity,
+} from 'react-native';
 import React, {ReactNode, useState} from 'react';
 import tw from '../../../application/libs/tailwind/Tailwind.instance';
+import {EyeIcon, EyeSlashIcon} from 'react-native-heroicons/outline';
 
 interface CommonInputTypes {
   label?: string;
@@ -32,6 +39,7 @@ const CommonInput = ({
   height = 12,
 }: CommonInputTypes) => {
   const [isFocus, setIsFocus] = useState<Boolean>(false);
+  const [secureText, setSecureText] = useState(isSecure);
 
   const _renderLabel = () => {
     if (!label) return null;
@@ -52,7 +60,7 @@ const CommonInput = ({
         {prefix?.()}
         <TextInput
           onFocus={() => setIsFocus(true)}
-          secureTextEntry={isSecure}
+          secureTextEntry={secureText}
           editable={!disabled}
           value={value}
           multiline={multiline}
@@ -63,7 +71,19 @@ const CommonInput = ({
           keyboardType={keyboardType}
           style={tw`flex-1 px-4 h-full w-full font-primary--regular text-base text-black`}
         />
-        {suffix?.()}
+        {isSecure ? (
+          <TouchableOpacity
+            style={tw`px-4`}
+            onPress={() => setSecureText(!secureText)}>
+            {secureText ? (
+              <EyeSlashIcon style={tw`text-slate-500`} />
+            ) : (
+              <EyeIcon style={tw`text-slate-500`} />
+            )}
+          </TouchableOpacity>
+        ) : (
+          suffix?.()
+        )}
       </View>
     );
   };
