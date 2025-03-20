@@ -9,9 +9,7 @@ const useSplash = () => {
 
   useEffect(() => {
     const init = async () => {
-      const response = await storageCheckVerison(
-        'co-branding-invoice-crkj-02-pt',
-      );
+      const response = await storageCheckVerison();
 
       if (response == null || response?.allow != '1') {
         Alert.alert(

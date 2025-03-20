@@ -258,15 +258,10 @@ export const storageDeleteSelectedProducts = (
   console.log('Selected products deleted successfully!');
 };
 
-export const storageCheckVerison = async (token: string) => {
+export const storageCheckVerison = async () => {
   try {
     const response = await axios.get(
-      'http://nodepos.id/co_branding_version_v1.php?tkn=' + token,
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      },
+      'https://nodepos.id/co_branding_version_v1.php?tkn=co-branding-invoice-crkj-02-pt',
     );
 
     return response?.data;

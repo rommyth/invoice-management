@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Text} from 'react-native';
 import {MenuProvider} from 'react-native-popup-menu';
+import 'moment/locale/id';
 
 // Create a client
 const queryClient = new QueryClient();

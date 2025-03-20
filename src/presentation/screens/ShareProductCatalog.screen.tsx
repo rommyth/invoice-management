@@ -6,7 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import tw from '../../application/libs/tailwind/Tailwind.instance';
 import TopNavbar from '../components/organisms/TopNavbar.organism';
 import useShareProductCatalog from '../hooks/useShareProductCatalog';
@@ -25,7 +25,7 @@ import {toCurrency} from '../../application/utils/FormatPrice';
 import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
 
 const ShareProductCatalog = () => {
-  const date = new Date();
+  const [date] = useState(new Date().toISOString());
 
   const {
     ref,
@@ -163,7 +163,9 @@ const ShareProductCatalog = () => {
               <Text
                 style={tw`font-primary--regular text-xs text-slate-500 text-center mt-2`}>
                 Daftar harga produk per tanggal{' '}
-                {moment(date).locale('id').format('DD MMMM YYYY')}
+                <Text style={tw`font-primary--bold text-slate-800`}>
+                  {moment(date).format('DD MMMM YYYY')}
+                </Text>
               </Text>
             </View>
             <FlatList
@@ -182,6 +184,13 @@ const ShareProductCatalog = () => {
                 }
               }}
             />
+            <Text
+              style={tw`mt-8 mb-4 font-primary--regular text-xs text-slate-500 text-center`}>
+              Diterbitkan oleh{'\n'}
+              <Text style={tw`font-primary--bold text-slate-800`}>
+                PT CIPTA RASA KREATIF JAYA
+              </Text>
+            </Text>
           </View>
         </ViewShot>
       </ScrollView>
