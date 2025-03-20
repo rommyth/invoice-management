@@ -60,7 +60,7 @@ const HomeScreen = () => {
           return (
             <TouchableOpacity style={tw`rounded-xl overflow-hidden`}>
               <ImageBackground
-                source={{uri: 'http://picsum.photos/200'}}
+                source={{uri: item.product_image ?? 'http://picsum.photos/200'}}
                 resizeMethod="resize"
                 resizeMode="cover"
                 style={tw`w-32 h-50`}>

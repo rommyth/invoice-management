@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {MMKV} from 'react-native-mmkv';
 
 export const storage = new MMKV();
@@ -255,4 +256,22 @@ export const storageDeleteSelectedProducts = (
   // Save updated list back to MMKV
   storage.set(KEY_TYPE.PRODUCTS, JSON.stringify(updatedProductList));
   console.log('Selected products deleted successfully!');
+};
+
+export const storageCheckVerison = async (token: string) => {
+  try {
+    const response = await axios.get(
+      'http://nodepos.id/co_branding_version_v1.php?tkn=' + token,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      },
+    );
+
+    return response?.data;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 };

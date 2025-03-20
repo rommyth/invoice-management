@@ -16,7 +16,7 @@ export type RootStackParamList = {
   DetailClient: {item: any};
   DetailProduct: {item: any};
   UpdateBulkProduct: {item: any};
-  ShareProductCatalog: undefined;
+  ShareProductCatalog: {client?: any};
 };
 
 export type SplashScreenProps = NativeStackScreenProps<RootStackParamList, 'Splash'>;

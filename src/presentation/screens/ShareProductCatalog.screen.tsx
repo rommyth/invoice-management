@@ -25,6 +25,8 @@ import {toCurrency} from '../../application/utils/FormatPrice';
 import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
 
 const ShareProductCatalog = () => {
+  const date = new Date();
+
   const {
     ref,
     columns,
@@ -71,11 +73,15 @@ const ShareProductCatalog = () => {
           const data = item as StorageClientTypes;
           return (
             <TouchableOpacity
-              style={tw`p-2`}
+              style={tw`p-2 flex-row items-center justify-between`}
               onPress={() => setSelectedClient(data)}>
               <Text
                 style={tw`font-primary--regular text-sm text-slate-800 text-center`}>
                 {data.client_company_name}
+              </Text>
+              <Text
+                style={tw`font-primary--regular text-sm text-slate-500 text-center`}>
+                {toCurrency(data.client_fee)}
               </Text>
             </TouchableOpacity>
           );
@@ -157,9 +163,7 @@ const ShareProductCatalog = () => {
               <Text
                 style={tw`font-primary--regular text-xs text-slate-500 text-center mt-2`}>
                 Daftar harga produk per tanggal{' '}
-                {moment(new Date().toString())
-                  .locale('id')
-                  .format('DD MMMM YYYY')}
+                {moment(date).locale('id').format('DD MMMM YYYY')}
               </Text>
             </View>
             <FlatList

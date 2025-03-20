@@ -6,8 +6,12 @@ import {
   StorageClientTypes,
   StorageProductTypes,
 } from '../../application/libs/local-storage/storage';
+import {ShareProductCatalogScreenProps} from '../../application/navigations/RootStackTypes';
+import {useRoute} from '@react-navigation/native';
 
 const useShareProductCatalog = () => {
+  const route: ShareProductCatalogScreenProps['route'] = useRoute();
+
   const ref = useRef<any>(null);
   const [clients, setClients] = useMMKVObject<StorageClientTypes[]>(
     KEY_TYPE.CLIENTS,
@@ -17,7 +21,7 @@ const useShareProductCatalog = () => {
   );
 
   const [selectedClient, setSelectedClient] =
-    useState<StorageClientTypes | null>(null);
+    useState<StorageClientTypes | null>(route.params?.client ?? null);
 
   const [columns, setColumns] = useState<1 | 3>(1);
 

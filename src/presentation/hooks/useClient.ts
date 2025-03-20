@@ -20,7 +20,17 @@ const useClient = () => {
     navigation.navigate('DetailClient', {item});
   };
 
-  return {clients, setClients, navigateToDetailClient, navigateToCreateClient};
+  const navigateToShareProductCatalog = (item: StorageClientTypes) => {
+    navigation.navigate('ShareProductCatalog', {client: item});
+  };
+
+  return {
+    clients,
+    setClients,
+    navigateToDetailClient,
+    navigateToCreateClient,
+    navigateToShareProductCatalog,
+  };
 };
 
 export default useClient;

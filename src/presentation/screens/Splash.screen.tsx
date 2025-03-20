@@ -6,7 +6,7 @@ import BgSplash from '../assets/images/bg-splash.png';
 import ImgLogo from '../assets/images/logo-crkj-round.png';
 
 const Splash = () => {
-  const _ = useSplash();
+  // const _ = useSplash();
 
   return (
     <ImageBackground
@@ -25,6 +25,9 @@ const Splash = () => {
         />
         <Text style={tw`font-primary--bold text-2xl text-black`}>CRKJ Sys</Text>
       </View>
+      <Text style={tw`font-primary--regular text-sm text-slate-400`}>
+        Versi 1.0
+      </Text>
     </ImageBackground>
   );
 };
