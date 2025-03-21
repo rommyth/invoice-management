@@ -68,7 +68,12 @@ const Client = () => {
                       </Text>
                     </View>
                   </View>
-                  <Menu>
+                  <TouchableOpacity
+                    onPress={() => navigateToShareProductCatalog(item)}
+                    style={tw`p-1`}>
+                    <ShareIcon style={tw`text-slate-800`} size={20} />
+                  </TouchableOpacity>
+                  {/* <Menu>
                     <MenuTrigger>
                       <EllipsisVerticalIcon style={tw`text-slate-800`} />
                     </MenuTrigger>
@@ -84,7 +89,7 @@ const Client = () => {
                         </Text>
                       </MenuOption>
                     </MenuOptions>
-                  </Menu>
+                  </Menu> */}
                 </View>
               </TouchableOpacity>
             );

@@ -30,7 +30,7 @@ const useShareProductCatalog = () => {
   const onShare = useCallback(() => {
     ref.current.capture().then((uri: any) => {
       Share.open({
-        title: 'Katalog',
+        title: 'Share Katalog',
         url: uri,
       });
     });

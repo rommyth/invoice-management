@@ -21,7 +21,7 @@ import CommonDropdown from '../components/molecules/CommonDropdown.molecule';
 import CommonButton from '../components/molecules/CommonButton.molecule';
 import ViewShot from 'react-native-view-shot';
 import moment from 'moment';
-import ImgLogo from '../assets/images/logo-crkj-round.png';
+import ImgLogo from '../assets/images/logo-crkj-full.png';
 import {
   StorageClientTypes,
   StorageProductTypes,
@@ -158,7 +158,7 @@ const ShareProductCatalog = () => {
                   source={ImgLogo}
                   resizeMethod="resize"
                   resizeMode="contain"
-                  style={tw`w-12 h-12`}
+                  style={tw`h-12`}
                 />
               </View>
               <Text
@@ -201,62 +201,45 @@ const ShareProductCatalog = () => {
             <View style={tw`gap-1`}>
               <View style={tw`flex-row items-center gap-2`}>
                 <ChevronRightIcon style={tw`text-slate-800`} size={15} />
-                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                <Text style={tw`font-primary--bold text-xs text-slate-800`}>
                   Sistem pembayaran COD
                 </Text>
               </View>
               <View style={tw`flex-row items-center gap-2`}>
                 <ChevronRightIcon style={tw`text-slate-800`} size={15} />
-                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                <Text style={tw`font-primary--bold text-xs text-slate-800`}>
                   Pemesanan H-1
                 </Text>
               </View>
               <View style={tw`flex-row items-center gap-2`}>
                 <ChevronRightIcon style={tw`text-slate-800`} size={15} />
-                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+                <Text style={tw`font-primary--bold text-xs text-slate-800`}>
                   Pembayaran sebelum dibuka segel
                 </Text>
               </View>
             </View>
             <View style={tw`w-full bg-slate-300 h-[1px]`} />
-            <View style={tw`gap-1`}>
+            <View style={tw`gap-1 items-center justify-center`}>
               <Text style={tw`font-primary--regular text-xs text-slate-800`}>
                 Terima kasih
               </Text>
-              <Text style={tw`font-primary--regular text-xs text-slate-800`}>
+              <Text style={tw`font-primary--bold text-xs text-slate-800`}>
                 PT. CIPTA RASA KREATIF JAYA
               </Text>
             </View>
-            <View style={tw`gap-0.5 `}>
+            <View style={tw`gap-1 mt-2 items-center justify-center`}>
               <Text
                 style={tw`font-primary--regular text-xs text-slate-800 mb-0.5`}>
                 Info lebih lanjut
               </Text>
-              <View style={tw`flex-row items-center`}>
-                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
-                  Whatsapp :{' '}
-                </Text>
-                <TextInput
-                  value={userWhatsapp}
-                  onChangeText={text => setUserWhatsapp(text)}
-                  keyboardType="number-pad"
-                  placeholder="Masukan nomor wa"
-                  placeholderTextColor={'#aba'}
-                  style={tw`font-primary--regular text-xs text-slate-800 h-4 mt-1 p-0 flex-1`}
-                />
-              </View>
-              <View style={tw`flex-row items-center`}>
-                <Text style={tw`font-primary--regular text-xs text-slate-800`}>
-                  TikTok :{' '}
-                </Text>
-                <TextInput
-                  value={userTiktok}
-                  onChangeText={text => setUserTiktok(text)}
-                  placeholder="Masukan nama tiktok"
-                  placeholderTextColor={'#aba'}
-                  style={tw`font-primary--regular text-xs text-slate-800 h-4 mt-0.5 p-0 flex-1`}
-                />
-              </View>
+              <Text
+                style={tw`font-primary--regular text-xs text-slate-800 mb-0.5`}>
+                Whatsapp : 0896-8878-8903
+              </Text>
+              <Text
+                style={tw`font-primary--regular text-xs text-slate-800 mb-0.5`}>
+                Tiktok : @crkjofficial
+              </Text>
             </View>
           </View>
         </ViewShot>
