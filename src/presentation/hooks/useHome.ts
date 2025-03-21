@@ -5,8 +5,12 @@ import {
   KEY_TYPE,
   StorageProductTypes,
 } from '../../application/libs/local-storage/storage';
+import {useNavigation} from '@react-navigation/native';
+import {HomeScreenProps} from '../../application/navigations/RootStackTypes';
 
 const useHome = () => {
+  const navigation: HomeScreenProps['navigation'] = useNavigation();
+
   const [products] = useMMKVObject<StorageProductTypes[]>(KEY_TYPE.PRODUCTS);
   // const {data, isLoading} = useQuery({
   //   queryKey: ['users'],
@@ -21,7 +25,11 @@ const useHome = () => {
     console.log('Navigate to Create Invoice');
   };
 
-  return {products, navigateToCreateInvoice};
+  const navigateToProfile = () => {
+    navigation.navigate('Profile');
+  };
+
+  return {products, navigateToCreateInvoice, navigateToProfile};
 };
 
 export default useHome;

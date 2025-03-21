@@ -18,7 +18,7 @@ import CommonListEmpty from '../components/molecules/CommonListEmpty.molecule';
 
 const HomeScreen = () => {
   const layout = useWindowDimensions();
-  const {products} = useHome();
+  const {products, navigateToProfile} = useHome();
 
   const _renderHeader = () => (
     <View
@@ -31,7 +31,7 @@ const HomeScreen = () => {
           Welcome, Romi
         </Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={navigateToProfile}>
         <UserCircleIcon style={tw`text-white`} size={42} />
       </TouchableOpacity>
     </View>
