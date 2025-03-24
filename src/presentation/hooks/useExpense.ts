@@ -7,7 +7,12 @@ const useExpense = () => {
   const navigateToCreateExpense = () => {
     navigation.navigate('CreateExpense');
   };
-  return {navigateToCreateExpense};
+
+  const navugateToDetailExpense = (item: any) => {
+    navigation.navigate('DetailExpense', {item});
+  };
+
+  return {navigateToCreateExpense, navugateToDetailExpense};
 };
 
 export default useExpense;

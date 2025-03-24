@@ -4,6 +4,7 @@ import {CreateExpenseScreenProps} from '../../application/navigations/RootStackT
 
 const useCreateExpense = () => {
   const navigation: CreateExpenseScreenProps['navigation'] = useNavigation();
+
   const [price, setPrice] = useState(0);
 
   const onSubmit = () => {

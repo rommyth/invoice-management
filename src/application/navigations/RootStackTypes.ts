@@ -18,6 +18,7 @@ export type RootStackParamList = {
   UpdateBulkProduct: {item: any};
   ShareProductCatalog: {client?: any};
   Profile: undefined;
+  DetailExpense: {item: any};
 };
 
 export type SplashScreenProps = NativeStackScreenProps<RootStackParamList, 'Splash'>;
@@ -37,3 +38,5 @@ export type DetailProductScreenProps = NativeStackScreenProps<RootStackParamList
 export type UpdateBulkProductScreenProps = NativeStackScreenProps<RootStackParamList, 'UpdateBulkProduct'>;
 export type ShareProductCatalogScreenProps = NativeStackScreenProps<RootStackParamList, 'ShareProductCatalog'>;
 export type ProfileScreenProps = NativeStackScreenProps<RootStackParamList, 'Profile'>;
+export type DetailExpenseScreenProps = NativeStackScreenProps<RootStackParamList, 'DetailExpense'>;
+

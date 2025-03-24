@@ -18,6 +18,7 @@ import DetailProduct from '../../presentation/screens/DetailProduct';
 import UpdateBulkProduct from '../../presentation/screens/UpdateBulkProduct.screen';
 import ShareProductCatalog from '../../presentation/screens/ShareProductCatalog.screen';
 import Profile from '../../presentation/screens/Profile.screen';
+import DetailExpense from '../../presentation/screens/DetailExpanse.screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -43,6 +44,7 @@ const RootStack = () => {
       <Stack.Screen name="UpdateBulkProduct" component={UpdateBulkProduct} />
       <Stack.Screen name="ShareProductCatalog" component={ShareProductCatalog} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="DetailExpense" component={DetailExpense} />
     </Stack.Navigator>
   );
 };

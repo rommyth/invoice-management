@@ -8,7 +8,7 @@ import {DocumentArrowUpIcon, PlusIcon} from 'react-native-heroicons/outline';
 import FloatingButton from '../components/molecules/FloatingButton.molecule';
 
 const Expense = () => {
-  const {navigateToCreateExpense} = useExpense();
+  const {navigateToCreateExpense, navugateToDetailExpense} = useExpense();
 
   const _renderHeader = () => (
     <View
@@ -53,9 +53,9 @@ const Expense = () => {
           ItemSeparatorComponent={() => (
             <View style={tw`w-full h-[1px] bg-slate-200`} />
           )}
-          renderItem={() => {
+          renderItem={({item}) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navugateToDetailExpense(item)}>
                 <View style={tw`p-4 flex-row items-center gap-4`}>
                   <DocumentArrowUpIcon style={tw`text-slate-800`} size={28} />
                   <View>
